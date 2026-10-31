@@ -7,3 +7,6 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 
 .hero h1{max-width:640px}.hero h1 em{display:block}@media(max-width:640px){.hero h1{max-width:350px}}
+.brand{flex-shrink:0}.brand .official-logo{width:196px;height:auto;max-height:80px;object-fit:contain}.nav{gap:24px}.footer-grid .brand{display:inline-flex;background:#fff;padding:10px 14px}.footer-grid .brand .official-logo{width:220px;max-height:none}.service-image{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;margin-bottom:26px}.service-list .service-image{margin-bottom:28px}.people img{object-position:center;aspect-ratio:1280/853;height:auto}.service-grid{gap:24px;border:0}.service-grid .service{padding:0 0 45px;border-right:0;border-bottom:1px solid var(--line)}.service-grid .service-top,.service-grid .service h3,.service-grid .service p{padding-left:4px;padding-right:4px}.service-grid .service-arrow{right:4px}.service-grid .service h3{margin-top:20px}
+@media(max-width:1150px){.brand .official-logo{width:170px}.nav{gap:18px}}
+@media(max-width:640px){.brand .official-logo{width:170px;max-height:68px}.service-grid{gap:30px}.service-image{margin-bottom:20px}.service-list .service{padding:22px 20px 45px}.footer-grid .brand .official-logo{width:200px}}

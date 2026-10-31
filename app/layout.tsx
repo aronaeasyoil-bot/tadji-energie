@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "TADJI ÉNERGIE — L’énergie qui relie les marchés africains",
   description: "Approvisionnement maritime, transport et distribution de produits pétroliers en Afrique de l’Ouest. Sénégal, Mali, Côte d’Ivoire.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/brand/icon-official.png",
+    shortcut: "/brand/icon-official.png",
   },
 };
 
