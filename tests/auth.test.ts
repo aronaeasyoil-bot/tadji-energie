@@ -1,0 +1,4 @@
+import{test}from'node:test';import assert from'node:assert/strict';import{createSession,validSession,sameOrigin}from'../lib/admin-auth.ts';
+const secret='a-secure-secret-of-at-least-thirty-two-characters';
+test('session expires and rejects forged signatures',()=>{const now=Date.now();const token=createSession(secret,now);assert.equal(validSession(token,secret,now+100),true);assert.equal(validSession(token,secret,now+9*3600000),false);assert.equal(validSession(token+'x',secret,now),false);assert.equal(validSession(token,'another-secret-with-at-least-thirty-two-characters',now),false);assert.equal(validSession(token,undefined,now),false)});
+test('mutation origin must match request origin',()=>{assert.equal(sameOrigin(new Request('https://tadji.energy/api/content',{headers:{origin:'https://evil.example'}})),false);assert.equal(sameOrigin(new Request('https://tadji.energy/api/content',{headers:{origin:'https://tadji.energy'}})),true)});
