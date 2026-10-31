@@ -13,9 +13,7 @@ Les textes sont dans `lib/content.ts`. L’administration `/admin` les enregistr
 Les images WebP et logos SVG se trouvent dans `public/images` et `public/brand`. Les images sont conceptuelles et ne prouvent pas la propriété de véhicules, navires, installations ou la présence d’une équipe réelle. Prompts : `PROMPTS.md`.
 
 ## Assistant
-Le guide commercial est utilisable immédiatement. La conversation IA est reliée à Vercel AI Gateway avec le modèle `google/gemini-2.5-flash-lite` et l’authentification OIDC automatique : aucune clé n’est nécessaire dans le navigateur. L’activation du compte AI Gateway reste requise par Vercel. Le service peut notamment refuser les appels tant que la carte exigée pour débloquer ses crédits n’est pas renseignée. Ce refus est traité sans afficher les détails du compte aux visiteurs. Aucun crédit n’est acheté automatiquement.
-
-Le stockage Blob limite l’assistant à 100 tentatives par jour ; les sorties sont plafonnées à 450 tokens. Un fournisseur alternatif peut être configuré avec `AI_ENDPOINT`, `AI_MODEL` et `AI_API_KEY` ensemble. Une clé `AI_GATEWAY_API_KEY` peut remplacer OIDC hors de Vercel. Les réponses ne confirment ni prix ni disponibilité.
+Le guide est immédiat. WebLLM et Qwen2.5 0.5B génèrent les réponses dans un Web Worker sur l'appareil du visiteur. Aucun compte, carte ou fournisseur facturé. Téléchargement uniquement après clic explicite (plusieurs centaines de Mo), puis cache local WebLLM. WebGPU et environ 1 Go de mémoire graphique requis. Modèle téléchargé depuis Hugging Face et GitHub. Les messages restent en mémoire dans le navigateur. Fermer le chat ou changer d'onglet interrompt le worker. Le modèle compact peut se tromper ; faire confirmer les informations commerciales par l'équipe. L'ancienne API retourne 410 sans contacter de fournisseur.
 
 ## Formulaires
 Préparent un message dans WhatsApp ou la messagerie du visiteur ; l’envoi final reste effectué par celui-ci. Aucune fausse confirmation d’envoi. Sénégal : +221 77 490 98 98 ; Mali : +223 77 00 66 66.

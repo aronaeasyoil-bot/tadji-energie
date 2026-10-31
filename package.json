@@ -10,8 +10,8 @@
     "test": "node --experimental-strip-types --test tests/*.test.ts"
   },
   "dependencies": {
+    "@mlc-ai/web-llm": "^0.2.87",
     "@vercel/blob": "2.8.2",
-    "@vercel/oidc": "^4.0.5",
     "lucide-react": "^1.31.0",
     "next": "16.4.3",
     "react": "19.3.1",

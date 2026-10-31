@@ -1,3 +1,0 @@
-import{test}from'node:test';import assert from'node:assert/strict';import{providerFailure,GATEWAY_ENDPOINT}from'../lib/ai-provider.ts';
-test('activation block is distinguished from outage without exposing details',()=>{assert.equal(providerFailure(403,'AI Gateway requires a valid credit card on file'),'provider_activation_required');assert.equal(providerFailure(402,'insufficient credits'),'provider_credits_exhausted');assert.equal(providerFailure(429,'quota'),'provider_rate_limit');assert.equal(providerFailure(500,'internal provider details'),'provider_unavailable')});
-test('OIDC destination is the official HTTPS gateway',()=>{assert.equal(new URL(GATEWAY_ENDPOINT).origin,'https://ai-gateway.vercel.sh')});
