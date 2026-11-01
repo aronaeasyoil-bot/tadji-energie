@@ -13,7 +13,7 @@ Les textes sont dans `lib/content.ts`. L’administration `/admin` les enregistr
 Les images WebP et logos SVG se trouvent dans `public/images` et `public/brand`. Les images sont conceptuelles et ne prouvent pas la propriété de véhicules, navires, installations ou la présence d’une équipe réelle. Prompts : `PROMPTS.md`.
 
 ## Assistant
-Le guide est immédiat. WebLLM et Qwen2.5 0.5B génèrent les réponses dans un Web Worker sur l'appareil du visiteur. Aucun compte, carte ou fournisseur facturé. Téléchargement uniquement après clic explicite (plusieurs centaines de Mo), puis cache local WebLLM. WebGPU et environ 1 Go de mémoire graphique requis. Modèle téléchargé depuis Hugging Face et GitHub. Les messages restent en mémoire dans le navigateur. Fermer le chat ou changer d'onglet interrompt le worker. Le modèle compact peut se tromper ; faire confirmer les informations commerciales par l'équipe. L'ancienne API retourne 410 sans contacter de fournisseur.
+Assistant commercial instantané : boutons de sujets et reconnaissance de mots-clés en français et anglais. Réponses issues des informations de l’entreprise, sans modèle génératif, téléchargement ou appel payant. Les questions non reconnues sont orientées vers WhatsApp. Conversation en mémoire du navigateur, effacée à la fermeture. Les textes de services proviennent du contenu éditable.
 
 ## Formulaires
 Préparent un message dans WhatsApp ou la messagerie du visiteur ; l’envoi final reste effectué par celui-ci. Aucune fausse confirmation d’envoi. Sénégal : +221 77 490 98 98 ; Mali : +223 77 00 66 66.
