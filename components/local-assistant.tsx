@@ -27,8 +27,10 @@ export default function LocalAssistant({lang}:{lang:'fr'|'en'}){
   const id=generation.current;
   const next:Message[]=[...messages,{role:'user',content:input.trim()}];setMessages(next);setInput('');setBusy(true);
   try{
-   const response=await engine.current.chat.completions.create({messages:[{role:'system',content:`You are TADJI ÉNERGIE's commercial assistant. Reply briefly in ${en?'English':'French'}. Only use these facts: services are international petroleum sourcing, maritime logistics, port operations, road tanker coordination and business distribution. Markets: Senegal, Mali, Ivory Coast. Contact info@tadji.energy, Senegal +221774909898, Mali +22377006666. For a quote ask product, quantity, destination and deadline. Never invent prices, availability, certifications, assets or guarantees. Unknown information must be confirmed by the team. Do not give dangerous fuel handling instructions. Stay on company topics.`},...next.slice(-6)],max_tokens:220,temperature:0.2});
-   if(id===generation.current){const text=response.choices[0]?.message.content?.trim();if(!text)throw Error('empty');setMessages([...next,{role:'assistant',content:text}]);}
+   const response=await engine.current.chat.completions.create({messages:[{role:'system',content:en?"You are TADJI ÉNERGIE's helpful commercial assistant. Answer in English in 3 short sentences using these company facts. Services: international petroleum sourcing, maritime logistics, port operations, road transport and distribution. Markets: Senegal, Mali, Ivory Coast. To request a quote, ask for product, quantity, destination and deadline. Contact: info@tadji.energy or WhatsApp +221774909898 (Senegal), +22377006666 (Mali). Prices and availability must be confirmed by our team. Stay on these business topics.":"Tu es l’assistant commercial de TADJI ÉNERGIE. Réponds en français en 3 phrases courtes à partir de cette fiche officielle. Nos services : approvisionnement international en produits pétroliers, logistique maritime, opérations portuaires, transport routier et distribution. Marchés : Sénégal, Mali, Côte d’Ivoire. Pour un devis, demander le produit, la quantité, la destination et le délai. Contact : info@tadji.energy ou WhatsApp +221774909898 au Sénégal, +22377006666 au Mali. Les prix et disponibilités doivent être confirmés par notre équipe. Reste sur ces sujets commerciaux."},...next.slice(-6)],stream:true,max_tokens:160,temperature:0.2});
+   let text='';
+   for await(const chunk of response){if(id!==generation.current)break;text+=chunk.choices[0]?.delta.content??'';setMessages([...next,{role:'assistant',content:text}]);}
+   if(id===generation.current&&!text.trim())throw Error('empty');
   }catch{if(id===generation.current){stop();setState('error');}}
   finally{if(id===generation.current||!engine.current)setBusy(false);}
  }
@@ -41,6 +43,7 @@ export default function LocalAssistant({lang}:{lang:'fr'|'en'}){
   {state==='ready'&&<>
    <div role="log" aria-live="polite">{messages.map((m,i)=><p className="chat-answer" key={i}><strong>{m.role==='user'?(en?'You':'Vous'):'TADJI IA'} : </strong>{m.content}</p>)}</div>
    <form onSubmit={send}><label className="fine" htmlFor="local-question">{en?'Your question — do not share sensitive information.':'Votre question — ne partagez aucune information sensible.'}</label><textarea id="local-question" maxLength={600} required value={input} onChange={e=>setInput(e.target.value)} disabled={busy}/><button className="button red" disabled={busy}>{busy?(en?'Thinking…':'Réflexion…'):(en?'Send':'Envoyer')}</button></form>
+   {busy&&<button className="text-button" onClick={()=>{stop();setBusy(false);setState('idle');}}>{en?'Stop AI':'Arrêter l’IA'}</button>}
    <button className="text-button" disabled={busy} onClick={()=>setMessages([])}>{en?'Clear conversation':'Effacer la conversation'}</button>
   </>}
  </div>;
