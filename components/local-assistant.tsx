@@ -35,11 +35,11 @@ export default function LocalAssistant({lang}:{lang:'fr'|'en'}){
   finally{if(id===generation.current||!engine.current)setBusy(false);}
  }
  return <div className="local-ai">
-  <p className="fine">{en?'Free local AI · No account or card. Replies are generated on your device and may contain errors. Confirm commercial details with our team.':'IA locale gratuite · Sans compte ni carte. Les réponses sont générées sur votre appareil et peuvent contenir des erreurs. Faites confirmer les détails commerciaux par notre équipe.'}</p>
-  {state!=='ready'&&<p className="fine">{en?'First use downloads several hundred MB from Hugging Face and GitHub. Requires WebGPU and about 1 GB of graphics memory. Wi-Fi recommended.':'La première utilisation télécharge plusieurs centaines de Mo depuis Hugging Face et GitHub. WebGPU et environ 1 Go de mémoire graphique sont nécessaires. Wi-Fi conseillé.'}</p>}
+  <p className="fine">{en?'Welcome to TADJI ÉNERGIE. Our AI assistant helps you explore our services and prepare your quote request.':'Bienvenue chez TADJI ÉNERGIE. Notre assistant IA vous accompagne pour découvrir nos services et préparer votre demande de devis.'}</p>
+  {state!=='ready'&&<p className="fine">{en?'Starting for the first time requires a download. A Wi-Fi connection is recommended.':'Le premier démarrage nécessite un téléchargement. Une connexion Wi-Fi est recommandée.'}</p>}
   {state==='error'&&<p role="alert">{en?'AI could not run on this device or network. Use the Guide tab or contact us on WhatsApp.':'L’IA n’a pas pu démarrer sur cet appareil ou ce réseau. Utilisez l’onglet Guide ou contactez-nous sur WhatsApp.'}</p>}
-  {(state==='idle'||state==='error')&&<button className="button red" onClick={start}>{en?'Download and start AI':'Télécharger et démarrer l’IA'}</button>}
-  {state==='loading'&&<div role="status"><p>{en?'Loading model':'Chargement du modèle'} : {progress}%</p><progress value={progress} max={100}/><button className="text-button" onClick={()=>{stop();setState('idle');}}>{en?'Cancel':'Annuler'}</button></div>}
+  {(state==='idle'||state==='error')&&<button className="button red" onClick={start}>{en?'Start the conversation':'Démarrer la conversation'}</button>}
+  {state==='loading'&&<div role="status"><p>{en?'Preparing your assistant':'Préparation de votre assistant'} : {progress}%</p><progress value={progress} max={100}/><button className="text-button" onClick={()=>{stop();setState('idle');}}>{en?'Cancel':'Annuler'}</button></div>}
   {state==='ready'&&<>
    <div role="log" aria-live="polite">{messages.map((m,i)=><p className="chat-answer" key={i}><strong>{m.role==='user'?(en?'You':'Vous'):'TADJI IA'} : </strong>{m.content}</p>)}</div>
    <form onSubmit={send}><label className="fine" htmlFor="local-question">{en?'Your question — do not share sensitive information.':'Votre question — ne partagez aucune information sensible.'}</label><textarea id="local-question" maxLength={600} required value={input} onChange={e=>setInput(e.target.value)} disabled={busy}/><button className="button red" disabled={busy}>{busy?(en?'Thinking…':'Réflexion…'):(en?'Send':'Envoyer')}</button></form>
