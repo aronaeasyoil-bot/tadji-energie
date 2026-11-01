@@ -13,7 +13,9 @@ Les textes sont dans `lib/content.ts`. L’administration `/admin` les enregistr
 Les images WebP et logos SVG se trouvent dans `public/images` et `public/brand`. Les images sont conceptuelles et ne prouvent pas la propriété de véhicules, navires, installations ou la présence d’une équipe réelle. Prompts : `PROMPTS.md`.
 
 ## Assistant
-Assistant commercial instantané : boutons de sujets et reconnaissance de mots-clés en français et anglais. Réponses issues des informations de l’entreprise, sans modèle génératif, téléchargement ou appel payant. Les questions non reconnues sont orientées vers WhatsApp. Conversation en mémoire du navigateur, effacée à la fermeture. Les textes de services proviennent du contenu éditable.
+Base commerciale bilingue fournie par TADJI ÉNERGIE : 20 FAQ, qualification progressive des devis, partenariats et réclamations, extraction des produits/volumes/pays explicitement renseignés, validation des champs et récapitulatif modifiable avec référence unique et consentement. Réponses automatiques déterministes, sans modèle génératif ni téléchargement. La FAQ est administrable dans /admin via assistantFaqQuestions et assistantFaqAnswers (ordre des sujets fixe). Les règles d’orientation restent dans lib/assistant-knowledge.ts.
+
+Les demandes restent en mémoire du navigateur ; elles ne sont pas enregistrées sur le serveur. Après confirmation, les liens préparent un message WhatsApp ou un email à bako@tadji.energy. Le visiteur effectue l’envoi dans cette application. Aucun accusé de réception, notification email automatique, suivi CRM ou téléchargement de justificatif n’est simulé. Ces intégrations nécessitent un canal serveur et une politique de conservation définis. Prix, stocks, délais et contrats restent soumis à validation humaine.
 
 ## Formulaires
 Préparent un message dans WhatsApp ou la messagerie du visiteur ; l’envoi final reste effectué par celui-ci. Aucune fausse confirmation d’envoi. Sénégal : +221 77 490 98 98 ; Mali : +223 77 00 66 66.
